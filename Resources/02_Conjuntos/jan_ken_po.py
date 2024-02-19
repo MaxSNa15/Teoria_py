@@ -35,7 +35,7 @@ draw_messages = [
 computer_score, player_score = 0, 0
 
 # Función para jugar una ronda
-def PlayRound(player_value):
+def playRound(player_value):
     # Generar numero aleatorio para la opción de la computadora
     computer_value = ran.randint(0, 2)
 
@@ -72,4 +72,4 @@ while True:
     elif player_value < 0 or player_value > 2:
         print("Opción inválida")
     else:
-        print(PlayRound(player_value))
+        print(playRound(player_value))

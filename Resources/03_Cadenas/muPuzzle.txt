@@ -1,0 +1,53 @@
+Programa Puzle de MU
+
+Función transform_to_MU(cadena_actual, profundidad, max_profundidad)
+    // Regla 1: Si la última letra es I, se puede agregar U
+    Si el último carácter de cadena_actual es 'I' entonces
+        nueva_cadena = cadena_actual + 'U'
+        Si nueva_cadena es 'MU' entonces
+            retorna ['MU']
+        Sino si profundidad < max_profundidad entonces
+            resultado = transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+            Si resultado es no nulo entonces
+                retorna [nueva_cadena] + resultado
+
+    // Regla 2: Se puede duplicar la parte después de M
+    nueva_cadena = cadena_actual + cadena_actual[desde el segundo carácter hasta el final]
+    Si nueva_cadena es 'MU' entonces
+        retorna ['MU']
+    Sino si profundidad < max_profundidad entonces
+        resultado = transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+        Si resultado es no nulo entonces
+            retorna [nueva_cadena] + resultado
+
+    // Regla 3: III se puede reemplazar por U
+    Si cadena_actual contiene 'III' entonces
+        nueva_cadena = cadena_actual reemplazando el primer 'III' encontrado por 'U'
+        Si nueva_cadena es 'MU' entonces
+            retorna ['MU']
+        Sino si profundidad < max_profundidad entonces
+            resultado = transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+            Si resultado es no nulo entonces
+                retorna [nueva_cadena] + resultado
+
+    // Regla 4: UU se puede eliminar
+    Si cadena_actual contiene 'UU' entonces
+        nueva_cadena = cadena_actual reemplazando el primer 'UU' encontrado por cadena vacía
+        Si nueva_cadena es 'MU' entonces
+            retorna ['MU']
+        Sino si profundidad < max_profundidad entonces
+            resultado = transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+            Si resultado es no nulo entonces
+                retorna [nueva_cadena] + resultado
+
+    // No se encontró una solución en este camino
+    Retorna nulo
+
+Fin Función
+
+// Intento de transformar MI en MU
+solución = transform_to_MU("MI", 0, 10)
+Si solución es no nulo entonces
+    Imprimir "Se encontró una solución: " + solución
+Sino
+    Imprimir "No se encontró una solución."

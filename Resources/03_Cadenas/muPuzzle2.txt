@@ -1,0 +1,39 @@
+Programa Puzle de MU
+
+Inicializar diccionario_niveles como un diccionario vacío
+
+Función transform_to_MU(cadena_actual, profundidad, max_profundidad)
+    Si profundidad > max_profundidad entonces
+        retorna
+
+    // Regla 1: Si la última letra es I, se puede agregar U
+    Si el último carácter de cadena_actual es 'I' entonces
+        nueva_cadena = cadena_actual + 'U'
+        Agregar nueva_cadena al diccionario_niveles en el nivel actual
+        transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+
+    // Regla 2: Se puede duplicar la parte después de M
+    nueva_cadena = cadena_actual + cadena_actual[desde el segundo carácter hasta el final]
+    Agregar nueva_cadena al diccionario_niveles en el nivel actual
+    transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+
+    // Regla 3: III se puede reemplazar por U
+    Si 'III' está en cadena_actual entonces
+        nueva_cadena = Reemplazar el primer 'III' en cadena_actual con 'U'
+        Agregar nueva_cadena al diccionario_niveles en el nivel actual
+        transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+
+    // Regla 4: UU se puede eliminar
+    Si 'UU' está en cadena_actual entonces
+        nueva_cadena = Reemplazar el primer 'UU' en cadena_actual con ''
+        Agregar nueva_cadena al diccionario_niveles en el nivel actual
+        transform_to_MU(nueva_cadena, profundidad + 1, max_profundidad)
+
+    // Agregar cadena_actual al diccionario_niveles si no está ya incluida
+    Si cadena_actual no está en diccionario_niveles[profundidad] entonces
+        Agregar cadena_actual a diccionario_niveles[profundidad]
+
+Función Principal
+    transform_to_MU('MI', 0, 10)  // Comenzar con 'MI', profundidad 0, y profundidad máxima 10
+    Imprimir diccionario_niveles  // Mostrar todos los niveles y cadenas generadas
+
